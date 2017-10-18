@@ -39,14 +39,15 @@ public class PressableImageView extends AppCompatImageView {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == android.view.MotionEvent.ACTION_DOWN) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
             setPressed(true);
-        } else if (event.getAction() == android.view.MotionEvent.ACTION_UP) {
+        } else if (event.getAction() == MotionEvent.ACTION_UP
+                || event.getAction() == MotionEvent.ACTION_CANCEL) {
             setPressed(false);
             float x = event.getX();
             float y = event.getY();
             boolean isInside = (x > 0 && x < getWidth() && y > 0 && y < getHeight());
-            if(isInside){
+            if (isInside) {
                 performClick();
             }
         }
